@@ -1,0 +1,145 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    {% seo %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="description" content="{{ site.description }}">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.ico">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
+    <style type="text/css">
+      
+    {% capture include_to_scssify %}
+    {% include main.scss %}
+    {% endcapture %}
+    {{ include_to_scssify | scssify }}
+
+    </style>
+  </head>
+  <body>
+    {% include nav.html %}
+<div class="container pb-4 pt-4">{% include searchbar.html %}</div>
+    
+<div class="container">
+ 
+
+<main class="container">
+  
+  
+  <div class="p-4 p-md-5 mb-4 text-black rounded bg-dark" >
+    <div class="col-md-6 px-1" style=" width: 100%">
+      <h1 class="display-5" style="color: white;">All started with <span style="color: red;">Glaucoma</span></h1>
+      <p  style="color: white; text-align: justify; text-justify: inter-word;" class="lead my-1" >Glaucoma is considered the first Spanish hacker group. They were active between 1987 and 1989. They are known as Glaucoma because they attacked the Iris network, a research network, and through the university computers they jumped to the world and to history as the first hackers recognized in Spain.</p>
+      <p class="lead mb-0" style="color: wheat;">Continue reading more in this blog...</p>
+    </div>
+  </div>
+  <div class="pb-4 mb-4 fst-bold text-center  border-bottom">
+  <h2 style="font-weight: bold;  font-size: 2.6em;">
+    Security Blog Posts
+  </h2>
+  <h4 class="underliner2" style="color: black;"> From one cybersecurity enthusiast to the whole world</h4>
+</div>
+
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <div class="row g-0  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light "  style="border-radius: 20px;">
+        <div class="col p-4 d-flex flex-column position-static text-center" >
+          
+          <h3 class="mb-0 underliner"><a style="color: black;" href="/cybersecurity" >Cybersecurity</a> </h3>
+          
+          <p style="  text-align: justify; text-justify: inter-word;" class="card-text mb-2 mt-2" >Main category addressed in this blog. We will talk about news, certifications, tools, red team, blue team and much more.
+
+          </p>
+          <i class="fas fa-lock fa-2x"></i>
+        
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row g-0  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light"  style="border-radius: 20px;">
+        <div class="col p-4 d-flex flex-column position-static text-center" >
+         
+          <h3 class="mb-0 underliner"><a style="color: black;" href="/linux">Linux</a></h3>
+          <p class="mb-2 mt-2" style="  text-align: justify; text-justify: inter-word;">I like Linux and learning about it. If you want to get into  IT  you must learn Linux!.</p>
+          &nbsp;
+          <i class="fab fa-linux fa-3x"></i>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-4" >
+      <div class="row g-0 overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light"  style="border-radius: 20px;">
+        <div class="col p-4 d-flex flex-column position-static text-center">
+         
+          <h3 class="mb-0 underliner"><a style="color: black;" href="/network">Networks & Protocols</a></h3>
+         
+          <p class="mb-4 mt-2" style="  text-align: justify; text-justify: inter-word;">Understand how different devices are connected and the protocols they use.</p>
+          &nbsp;
+          <i class="fab fa-bluetooth fa-3x"></i>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+ 
+  
+    
+  <div class="container">
+    <div class="row g-4">
+      <div class="pb-4 mb-4 fst-bold text-center  border-bottom">
+        <h2 style="font-weight: bolder; font-size: 2.3em;">
+          Recent Posts
+        </h2>
+      </div>
+        <div class="col-md-8">
+               {{content}}
+        </div>
+    
+        <div class="col-md-4">
+          <div class="position-sticky" style="top: 3rem;">
+            <div class="p-4 mb-3 bg-dark" style="border-radius: 10px;">
+              <h3 class="fst-italic text-center mb-3" style="color: white;">Who's behind <span style="color: red;"> Gl4uc0m4</span>  ?</h3>
+              <img src="/assets/img/avatar.jpg"  alt="Avatar" class=" img-fluid rounded-circle mx-auto d-block">
+              <p class="mb-0 mt-3" style="color: wheat;">My name is <span style="color: white">Miguel (aka MA) </span>  and I'm a software engineer. I am currently pursuing a master's degree in cybersecurity. <br><br> This project arises as my own challenge to prove myself that I am able to create content about what I am passionate. I hope you find my content useful!</p>
+            </div>
+    
+            <div class="p-4 bg-light" style="border-radius: 10px;">
+              <h4 class="fst-italic">Posts by tag</h4>
+              <ul class="tags">
+                </ul>
+              {% for tag in site.tags %}
+              <h5>{{ tag[0] }}</h5>
+              <ul>
+                {% for post in tag[1] %}
+                  <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endfor %}
+            </div>
+    
+           
+          </div>
+        </div>
+      </div>
+</div>
+
+  
+</main>
+
+    {% include footer.html %}
+
+    
+  </body>
+</html>

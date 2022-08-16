@@ -1,0 +1,67 @@
+---
+layout: default
+title: Security blog
+---
+
+
+    
+ <!-- This loops through the paginated posts -->
+ {% for post in paginator.posts %}
+  
+ <div style="background-color: #f8f8f8; box-shadow:  5px 10px #330000;" class="card mb-4 border-0">
+  <a href="{{post.url}}"><img class="card-img-top " src="{{post.teaser}}" alt="..." /></a>
+  <div class="card-body">
+    <h2 class="blog-post-title postH "> <a  href="{{post.url}}">{{ post.title }}</a></h2>
+    
+      <div class="small text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+      </svg> {{post.date | date: "%B %-d %Y"}} - <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+      </svg> Estimated reading time {{ post.time }} </div>
+      
+      <p class="card-text mt-4">{{post.excerpt}}</p>
+      <p style="font-size: 16px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+          <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
+          <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+        </svg> 
+        &nbsp;
+        {% for tag in post.tags %}
+       {{ tag}} &nbsp;
+      {% endfor %}</p>
+  </div>
+</div>
+
+
+ 
+ {% endfor %}
+ 
+ <!-- Pagination links -->
+ <div style="margin-top: 1em; background-color: white; border-radius: 10px; padding: 5px 5px 5px 5px;"  class="pagination">
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a style="margin-right: 1em;" href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
+    {% else %}
+      <span style="margin-right: 1em;" >&laquo; Prev</span>
+    {% endif %}
+  
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <em style="margin-right: 4px;">{{ page }}</em>
+      {% elsif page == 1 %}
+        <a style="margin-right: 4px;" href="/">{{ page }}</a>
+      {% else %}
+        <a style="margin-right: 4px;" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+  
+    {% if paginator.next_page %}
+      <a style="margin-left: 1em;" href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+    {% else %}
+      <span style="margin-left: 1em;">Next &raquo;</span>
+    {% endif %}
+  </div>
+  {% endif %}
+ </div>

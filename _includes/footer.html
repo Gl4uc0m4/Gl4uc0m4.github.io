@@ -1,0 +1,41 @@
+<div class="container" >
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top ">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span  style="color: white;">© 2022 Gl4uc0m4  </span>
+    </div>
+
+  
+    <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
+  </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.js"
+></script>
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+    <script>
+        var sjs = SimpleJekyllSearch({
+          searchInput: document.getElementById('search'),
+          resultsContainer: document.getElementById('search-result'),
+          json: '/search.json',
+          searchResultTemplate: '<a class="result-item" href="{{ site.baseurl }}{url}"><div class="title">{title}'+
+                  '</div><div class="description">{description}</div></a>'
+        });
+        
+          document.querySelector('#search').addEventListener('keyup', function () {
+            var keyword = this.value.toLowerCase();
+    
+            sjs.search(keyword);
+    
+            if (keyword.length > 0) {
+              document.querySelector('#search-result').style.display = 'block';;
+            } else {
+              document.querySelector('#search-result').style.display = 'none';;
+            }
+          });
+    </script>
+<script src="/assets/js/main.js"></script>
