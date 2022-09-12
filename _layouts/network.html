@@ -12,6 +12,11 @@ layout: compress
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied'
+});
+
   gtag('js', new Date());
 
   gtag('config', 'G-MYWGBX77MM');
@@ -50,6 +55,7 @@ layout: compress
  <hr>
 {% endfor %}
   </div>
+  {% include cookieconsent.html %}
   {% include footer.html %}
 
   

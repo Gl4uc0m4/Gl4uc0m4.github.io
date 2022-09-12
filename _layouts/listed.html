@@ -12,6 +12,11 @@ layout: compress
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied'
+});
+
   gtag('js', new Date());
 
   gtag('config', 'G-MYWGBX77MM');
@@ -38,6 +43,7 @@ layout: compress
   </head>
   <body>
     {% include nav.html %}
+    {% include cookieconsent.html %}
     <section class="page-section" id="about">
       <div class="container">
           <div class="text-center mb-5">
@@ -103,6 +109,7 @@ layout: compress
           </ul>
       </div>
   </section>
+  
   {% include footer.html %}
 
     

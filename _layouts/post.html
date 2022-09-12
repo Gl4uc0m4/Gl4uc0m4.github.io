@@ -12,6 +12,11 @@ layout: compress
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied'
+});
+
   gtag('js', new Date());
 
   gtag('config', 'G-MYWGBX77MM');
@@ -46,6 +51,7 @@ layout: compress
   <body>
     
     {% include nav.html %}
+    {% include cookieconsent.html %}
     
     <div class="container mt-5 pt-5" style="background-color: white; border-radius: 25px;">
       
