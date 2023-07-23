@@ -6,7 +6,7 @@ date: 2023-05-20
 time: 5min
 description: "In today's fast-paced world of information technology, the convergence of virtualization and hyperconvergence stands as a dynamic duo, poised to revolutionize the way businesses manage their infrastructure. ."
 classes: wide
-keywords: LLVM, Malware, Cibercriminals
+keywords: HCI, Virtualization, Hyperconvergence
 image: /assets/img/hci-banner.png
 teaser: /assets/img/hci-banner.png
 header:

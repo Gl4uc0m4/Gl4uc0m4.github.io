@@ -1,12 +1,12 @@
 ---
 layout: post
 title: Role of Windows Registry in Digital Forensics
-excerpt: "In today's fast-paced world of information technology, the convergence of virtualization and hyperconvergence stands as a dynamic duo, poised to revolutionize the way businesses manage their infrastructure. . "
+excerpt: "In the ever-expanding digital landscape, the Windows Registry stands as a critical repository of information, preserving a detailed record of a system's inner workings and user interactions. As a vital component of Windows operating systems, this hierarchical database offers a wealth of insights for digital forensics experts and cybersecurity professionals "
 date: 2023-06-01
 time: 5min
-description: "In today's fast-paced world of information technology, the convergence of virtualization and hyperconvergence stands as a dynamic duo, poised to revolutionize the way businesses manage their infrastructure. ."
+description: "In the ever-expanding digital landscape, the Windows Registry stands as a critical repository of information, preserving a detailed record of a system's inner workings and user interactions. As a vital component of Windows operating systems, this hierarchical database offers a wealth of insights for digital forensics experts and cybersecurity professionals"
 classes: wide
-keywords: LLVM, Malware, Cibercriminals
+keywords: Windows, Registry, Forensics
 image: /assets/img/windows-registry.png
 teaser: /assets/img/windows-registry.png
 header:
