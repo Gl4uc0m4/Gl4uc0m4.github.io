@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Active Directory Part I: structure and components"
-excerpt: CVSS rates vulnerability severity for prioritizing security."
+excerpt: Active Directory Series. Jump in!
 date: 2023-08-15
 time: 5min
-description: "The Common Vulnerability Scoring System (CVSS) is a standardized framework for assessing the severity of vulnerabilities in computer systems and networks. Are you interested? Jump in!"
+description: "Active Directory Series. Jump in!"
 classes: wide
-keywords: CVSS, Risk, Metrics, Score
+keywords: AD, Windows
 image: /assets/img/adstructure.png
 teaser: /assets/img/adstructure.png
 header:
