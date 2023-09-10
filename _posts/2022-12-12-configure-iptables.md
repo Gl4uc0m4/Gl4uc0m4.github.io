@@ -14,7 +14,7 @@ header:
 categories:
   - Linux
 tags:  
-  - routing, iptables, chains, rules
+  - Firewalls
 ---
 
 # What is Iptables?

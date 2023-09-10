@@ -15,7 +15,7 @@ header:
 categories:
   - Cybersecurity
 tags:  
-  - dfir, hex, file
+  - DFIR
 ---
 
 # Understanding File type formats and Magic Numbers.

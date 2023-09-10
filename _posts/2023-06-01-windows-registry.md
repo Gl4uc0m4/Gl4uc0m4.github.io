@@ -13,10 +13,9 @@ header:
   teaser_home_page: true
 categories:
   - Cybersecurity
-  - Linux
   - Network
 tags:  
-  - General
+  - Windows
 ---
 
 ## Introduction

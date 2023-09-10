@@ -14,7 +14,7 @@ header:
 categories:
   - Cybersecurity
 tags:  
-  - cryptography, hash, KDC, authentication, AC.
+  - Cryptography
 ---
 
 # What is cryptography and why it is important?

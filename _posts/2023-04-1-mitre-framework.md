@@ -14,7 +14,7 @@ header:
 categories:
   - Cybersecurity
 tags:  
-  - General
+  - Standards/Frameworks
 ---
 
 In the ever-evolving landscape of cybersecurity, understanding the tactics and techniques

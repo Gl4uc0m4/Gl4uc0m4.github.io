@@ -16,7 +16,7 @@ categories:
   - Linux
   - Network
 tags:  
-  - General
+  - SOC
 ---
 
 ## What is a SOC?

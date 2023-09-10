@@ -14,7 +14,7 @@ header:
 categories:
   - Linux
 tags:  
-  - General
+  - Linux
 --- 
 
 ## 1 What is FHS?

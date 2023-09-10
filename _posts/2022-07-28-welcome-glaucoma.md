@@ -16,7 +16,7 @@ categories:
   - Linux
   - Network
 tags:  
-  - greetings
+  - Greetings
 ---
 
 # Greetings friends! 

@@ -16,7 +16,7 @@ categories:
   - Linux
   - Network
 tags:  
-  - General
+  - Malware
 ---
 
 ## Introduction

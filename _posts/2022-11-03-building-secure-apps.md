@@ -14,7 +14,7 @@ header:
 categories:
   - Linux
 tags:  
-  - General
+  - Dev
 --- 
 
 ## What do we understand by a software vulnerability?
