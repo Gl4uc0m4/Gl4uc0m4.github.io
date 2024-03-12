@@ -14,7 +14,7 @@ plugins:
   - jekyll-seo-tag
 
 permalink: /:title/
-paginate: 4 # amount of posts to show
+paginate: 6 # amount of posts to show
 paginate_path: /page:num/
 
 
