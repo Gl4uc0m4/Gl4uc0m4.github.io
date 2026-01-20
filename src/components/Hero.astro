@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import config from '@config/config.json';
+import social from '@config/social';
+
+const socialItems = social.networks;
+---
+
+<section class="bg-zinc-50 dark:bg-zinc-900">
+  <div class="mx-auto max-w-screen-lg px-4 py-0 pb-6 sm:px-6 sm:pb-12 lg:px-8">
+    
+    <!-- HERO ORIGINAL -->
+    <div class="flex items-start justify-between">
+      <div class="w-3/5 rounded-lg">
+        <h1 class="mb-0 text-lg font-bold text-zinc-900 dark:text-white sm:text-3xl md:text-2xl">
+          {config.author.name}
+        </h1>
+        <p class="mt-1.5 text-sm text-zinc-500 dark:text-zinc-400 md:text-lg">
+          {config.author.bio}
+        </p>
+        <div class="m-auto flex space-x-5 pt-8">
+          {
+            socialItems?.map((item) => (
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <figure>
+                  <Fragment set:html={item.svg} />
+                </figure>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Avatar mejorado -->
+      <div class="rounded-full overflow-hidden shadow-lg transform transition hover:scale-105">
+        <figure class="right-0">
+          <Image
+            class="w-28 h-28 rounded-full md:w-36 md:h-36 object-cover"
+            width={512}
+            height={512}
+            src={config.author.avatar}
+            alt={config.author.name}
+            decoding="async"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,27 @@
+{
+  "site": {
+    "title": "GL4USec ",
+    "base_url": "https://gl4uc0m4security.com/",
+    "base_path": "/",
+    "favicon": "/favicon.png",
+    "logoLight": "/logoLight.png",
+    "logoDark": "/logoDark.png",
+    "lang": "en",
+    "description": "Malware and dfir blog posts.",
+    "pageSize": 6
+  },
+  "features": {
+    "youtube": true,
+    "dark_mode": true
+  },
+  "metadata": {
+    "meta_author": "Gl4uSec",
+    "meta_description": "Malware and dfir blog posts."
+  },
+  "author": {
+  "name": "GL4U Miqang",
+  "avatar": "/avatar.jpg",
+  "bio": "Malware Reverser | Digital Investigator | Cybersecurity Professional. Curious, disciplined, and committed to hard work. I love my country and take pride in my work—cybersecurity is more than a job, it’s a dedication to service and constant learning. 'Con la Patria se está como con la madre: con razón o sin ella.' 🇪🇸"
+}
+
+}

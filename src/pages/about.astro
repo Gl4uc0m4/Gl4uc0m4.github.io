@@ -1,0 +1,111 @@
+---
+import Base from '@layouts/Base.astro';
+import { Image } from 'astro:assets';
+---
+
+<Base meta_title="About & Portfolio">
+  <!-- ABOUT ME -->
+  <section class="mb-16 text-gray-900 dark:text-gray-200">
+    <h1 class="text-4xl font-bold mb-6 border-b-2 border-indigo-500 inline-block">About & Portfolio</h1>
+    <p class="mb-4">
+      I am a cybersecurity professional specialized in <strong>malware reverse engineering</strong> and <strong>DFIR (Digital Forensics & Incident Response)</strong>.  
+      My work is aligned with the <strong>DoD Cyber Workforce Framework (DCWF)</strong> and the <strong>NICE Cybersecurity Workforce Framework</strong>.
+    </p>
+    <p class="mb-4">
+      Beyond operational work, I practice with <strong>Hack The Box (HTB)</strong> to continuously sharpen my cyber combat skills.
+    </p>
+
+    <img 
+      src="/herobanner.png" 
+      alt="Cybersecurity hero illustration" 
+      class="mt-6 rounded-lg shadow-lg w-full max-w-3xl mx-auto"
+    >
+  </section>
+
+  <!-- PORTFOLIO CARDS -->
+  <section>
+    <h2 class="text-4xl font-bold mb-6 border-b-2 border-indigo-500 inline-block">Portfolio & Core Competencies</h2>
+
+    <div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Malware Reverse Engineering -->
+      <article class="flex flex-col rounded-lg bg-white dark:bg-gray-800 shadow-lg overflow-hidden hover:shadow-indigo-500/50 transition-shadow duration-300">
+        <figure class="h-48 w-full overflow-hidden">
+          <Image
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            src="/rem.png"
+            alt="Malware Reverse Engineering"
+            width={960}
+            height={480}
+            decoding="async"
+            loading="lazy"
+          />
+        </figure>
+        <div class="p-5 text-gray-900 dark:text-gray-100">
+          <h3 class="text-2xl font-semibold mb-2">Malware Reverse Engineering</h3>
+          <p class="mb-3">
+            Analyze complex malware to understand behavior, persistence mechanisms, and attack infrastructure.
+          </p>
+          <ul class="list-disc list-inside text-sm space-y-1">
+            <li>Static & dynamic analysis (IDA, Ghidra, x64dbg)</li>
+            <li>Extract indicators of compromise (IOCs)</li>
+            <li>Malware behavior and threat analysis</li>
+          </ul>
+        </div>
+      </article>
+
+ 
+      <article class="flex flex-col rounded-lg bg-white dark:bg-gray-800 shadow-lg overflow-hidden hover:shadow-indigo-500/50 transition-shadow duration-300">
+        <figure class="h-48 w-full overflow-hidden">
+          <Image
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            src="/dfir.png"
+            alt="Digital Forensics & Incident Response"
+            width={960}
+            height={480}
+            decoding="async"
+            loading="lazy"
+          />
+        </figure>
+        <div class="p-5 text-gray-900 dark:text-gray-100">
+          <h3 class="text-2xl font-semibold mb-2">Digital Forensics & Incident Response</h3>
+          <p class="mb-3">
+            Conduct forensic investigations, analyze incidents, and provide structured guidance for containment and remediation.
+          </p>
+          <ul class="list-disc list-inside text-sm space-y-1">
+            <li>Incident investigation and analysis</li>
+            <li>Digital evidence collection and chain-of-custody</li>
+            <li>Root cause and TTP analysis for actionable defense</li>
+          </ul>
+        </div>
+      </article>
+
+     
+      <article class="flex flex-col rounded-lg bg-white dark:bg-gray-800 shadow-lg overflow-hidden hover:shadow-indigo-500/50 transition-shadow duration-300">
+        <figure class="h-48 w-full overflow-hidden">
+          <Image
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            src="/ccdcoe.jpg"
+            alt="NATO cyber exercises"
+            width={960}
+            height={480}
+            decoding="async"
+            loading="lazy"
+          />
+        </figure>
+        <div class="p-5 text-gray-900 dark:text-gray-100">
+          <h3 class="text-2xl font-semibold mb-2">Continuous Training</h3>
+          <p class="mb-3">
+            Regularly practice on Hack The Box and participate in cyber exercises to sharpen skills and stay ahead of threats.
+          </p>
+          <ul class="list-disc list-inside text-sm space-y-1">
+            <li>Hands-on labs and simulations</li>
+            <li>Threat research and analysis</li>
+            <li>Skill improvement in malware analysis, DFIR, and incident response</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</Base>
