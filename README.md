@@ -1,4 +1,4 @@
-# GL4UC0M4 Security Blog
+# GL4uSec Blog
 
 [![Website](https://img.shields.io/website?label=gl4uc0m4security.com&style=for-the-badge&url=https://gl4uc0m4security.com/)](https://gl4uc0m4security.com/)
 
