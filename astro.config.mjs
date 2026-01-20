@@ -9,8 +9,7 @@ import { manifest } from './src/utils/manifest';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://gl4uc0m4security.com/', // tu dominio exacto
-  base: '/', // asegura que los assets se busquen desde la raíz
+  site: 'https://gl4uc0m4security.com',
   image: {
     remotePatterns: [{ protocol: 'https' }],
   },
