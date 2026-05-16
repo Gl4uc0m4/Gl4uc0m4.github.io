@@ -16,11 +16,6 @@ export default {
       svg: '<svg class="transition-all w-6 h-6 cursor-pointer text-zinc-400 hover:text-blue-300 fill-current" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M 11 4 C 7.134 4 4 7.134 4 11 L 4 39 C 4 42.866 7.134 46 11 46 L 39 46 C 42.866 46 46 42.866 46 39 L 46 11 C 46 7.134 42.866 4 39 4 L 11 4 z M 13.085938 13 L 21.023438 13 L 26.660156 21.009766 L 33.5 13 L 36 13 L 27.789062 22.613281 L 37.914062 37 L 29.978516 37 L 23.4375 27.707031 L 15.5 37 L 13 37 L 22.308594 26.103516 L 13.085938 13 z M 16.914062 15 L 31.021484 35 L 34.085938 35 L 19.978516 15 L 16.914062 15 z"></path></svg>',
     },
     {
-      name: 'linkedin',
-      url: 'https://www.linkedin.com/in/miguelpantojaglaucoma/',
-      svg: '<svg class= "transition-all w-6 h-6 cursor-pointer text-zinc-400 hover:text-blue-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><title>Linkedin</title><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>',
-    },
-    {
       name: 'htb',
       url: 'https://app.hackthebox.com/public/users/893770', 
       svg: `

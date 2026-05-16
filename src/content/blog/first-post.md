@@ -4,8 +4,8 @@ description: 'Sharing my cybersecurity journey and insights'
 pubDate: 'Jan 18 2026'
 authors: ['Miqang']
 heroImage: '/herobanner.png'
-categories: ['Philosophy']
-tags: ['hello', 'welcome', 'cybersecurity', 'learning', 'DFIR', 'Malware', 'Labs', 'CyberDefense']
+categories: ['Announcements']
+tags: ['welcome']
 ---
 
 
