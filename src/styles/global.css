@@ -2,18 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------
+   TOKENS DEL TEMA — única fuente de verdad.
+
+   Paleta:
+   - Cyan   → tecnología / links / DFIR
+   - Amber  → warning / suspicious
+   - Red    → malware / crítico
+   - Green  → clean / verified
+   - Purple → reversing / internals
+--------------------------------------------------------------- */
+
+:root {
+  /* -------------------------------------------------------------
+     PIXEL / DFIR PALETTE
+  ------------------------------------------------------------- */
+
+  --px-cyan: 53 224 193;        /* #35e0c1 */
+  --px-orange: 255 184 77;      /* #ffb84d */
+  --px-yellow: 255 211 102;     /* #ffd366 */
+
+  --px-red: 255 92 92;           /* #ff5c5c */
+  --px-green: 126 231 135;       /* #7ee787 */
+  --px-purple: 177 140 255;      /* #b18cff */
+
+  /* Panels */
+  --px-panel: 17 24 32;          /* #111820 */
+  --px-panel-raised: 24 35 43;   /* #18232b */
+  --px-border: 38 54 64;         /* #263640 */
+
+  /* -------------------------------------------------------------
+     LIGHT MODE
+  ------------------------------------------------------------- */
+
+  --color-bg: 244 241 234;       /* #f4f1ea */
+
+  --color-text-heading: 39 39 42;
+  --color-text-body: 63 63 70;
+  --color-text-bold: 39 39 42;
+
+  --color-text-link: var(--px-cyan);
+
+  --color-code-bg: 244 244 245;
+  --color-code-text: 39 39 42;
+}
+
+/* ---------------------------------------------------------------
+   DARK MODE
+--------------------------------------------------------------- */
+
+.dark {
+  --color-bg: 10 14 18;           /* #0a0e12 */
+
+  --color-text-heading: 232 240 242;
+  --color-text-body: 199 210 217;
+  --color-text-bold: 232 240 242;
+
+  --color-text-link: var(--px-cyan);
+
+  --color-code-bg: 17 24 32;
+  --color-code-text: 216 226 230;
+}
+
+/* ---------------------------------------------------------------
+   BASE
+--------------------------------------------------------------- */
+
 @layer base {
-  .prose code {
-    @apply text-base;
+  /* -------------------------------------------------------------
+     PROSE HEADINGS
+
+     Limitado a .prose para no pisar colores personalizados
+     de componentes como pixel-title, cards, badges, etc.
+  ------------------------------------------------------------- */
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: rgb(var(--color-text-heading));
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-zinc-800 dark:text-zinc-200 !important;
-  }
+
+  /* -------------------------------------------------------------
+     BODY TEXT
+  ------------------------------------------------------------- */
+
   p,
   li,
   strong,
@@ -21,13 +96,243 @@
   table * {
     @apply text-zinc-700 dark:text-zinc-300;
   }
-  kbd {
-    @apply bg-white text-zinc-700;
+
+  .prose code {
+    @apply text-base;
   }
+
+  /* -------------------------------------------------------------
+     KEYBOARD
+  ------------------------------------------------------------- */
+
+  kbd {
+    @apply bg-white text-zinc-700 dark:bg-zinc-800 dark:text-zinc-200;
+  }
+
+  /* -------------------------------------------------------------
+     HIGHLIGHT
+
+     En vez de amarillo sólido, usamos un warning suave.
+  ------------------------------------------------------------- */
+
   mark {
-    @apply bg-yellow-300;
+    background-color: rgb(var(--px-yellow) / 0.22);
+    color: rgb(var(--px-yellow));
+    padding: 0 3px;
   }
 }
+
+/* ---------------------------------------------------------------
+   UTILIDADES PIXEL
+--------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------
+   PIXEL FRAME OUTER
+
+   Gradiente cyan → purple para dar identidad de reversing.
+--------------------------------------------------------------- */
+
+.pixel-frame-outer {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--px-cyan)),
+    rgb(var(--px-purple))
+  );
+
+  padding: 6px;
+
+  clip-path: polygon(
+    0 12px,
+    6px 12px,
+    6px 6px,
+    12px 6px,
+    12px 0,
+
+    calc(100% - 12px) 0,
+    calc(100% - 12px) 6px,
+    calc(100% - 6px) 6px,
+    calc(100% - 6px) 12px,
+    100% 12px,
+
+    100% calc(100% - 12px),
+    calc(100% - 6px) calc(100% - 12px),
+    calc(100% - 6px) calc(100% - 6px),
+    calc(100% - 12px) calc(100% - 6px),
+    calc(100% - 12px) 100%,
+
+    12px 100%,
+    12px calc(100% - 6px),
+    6px calc(100% - 6px),
+    6px calc(100% - 12px),
+    0 calc(100% - 12px)
+  );
+}
+
+/* ---------------------------------------------------------------
+   SMALL PIXEL FRAME
+--------------------------------------------------------------- */
+
+.pixel-frame-outer.pixel-frame-outer--sm {
+  padding: 4px;
+}
+
+/* ---------------------------------------------------------------
+   PIXEL FRAME INNER
+--------------------------------------------------------------- */
+
+.pixel-frame-inner {
+  background: rgb(var(--px-panel));
+
+  clip-path: polygon(
+    0 10px,
+    5px 10px,
+    5px 5px,
+    10px 5px,
+    10px 0,
+
+    calc(100% - 10px) 0,
+    calc(100% - 10px) 5px,
+    calc(100% - 5px) 5px,
+    calc(100% - 5px) 10px,
+    100% 10px,
+
+    100% calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 5px),
+    calc(100% - 10px) 100%,
+
+    10px 100%,
+    10px calc(100% - 5px),
+    5px calc(100% - 5px),
+    5px calc(100% - 10px),
+    0 calc(100% - 10px)
+  );
+}
+
+/* ---------------------------------------------------------------
+   PIXEL BADGE
+--------------------------------------------------------------- */
+
+.pixel-badge {
+  font-family: 'Press Start 2P', monospace;
+
+  font-size: 0.55rem;
+  line-height: 1;
+
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  padding: 8px 12px;
+
+  background: rgb(var(--px-panel-raised));
+  border: 2px solid rgb(var(--px-border));
+
+  color: rgb(var(--color-text-body));
+
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+
+  position: relative;
+  z-index: 20;
+
+  transition:
+    transform 0.1s steps(2),
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+/* ---------------------------------------------------------------
+   PIXEL BADGE HOVER
+
+   Cyan = technical interaction
+--------------------------------------------------------------- */
+
+.pixel-badge:hover {
+  background: rgb(var(--px-cyan));
+  border-color: rgb(var(--px-cyan));
+
+  color: #0a0e12;
+
+  transform: translate(-2px, -2px);
+}
+
+/* ---------------------------------------------------------------
+   ACCENT BADGE
+
+   Amber = warning / important
+--------------------------------------------------------------- */
+
+.pixel-badge--accent {
+  background: rgb(var(--px-orange));
+  color: #0a0e12;
+  border-color: rgb(var(--px-orange));
+}
+
+.pixel-badge--accent:hover {
+  background: rgb(var(--px-yellow));
+  border-color: rgb(var(--px-yellow));
+
+  color: #0a0e12;
+}
+
+/* ---------------------------------------------------------------
+   OPTIONAL SEMANTIC BADGES
+
+   Puedes usarlos cuando quieras darle significado al color.
+--------------------------------------------------------------- */
+
+.pixel-badge--danger {
+  background: rgb(var(--px-red));
+  border-color: rgb(var(--px-red));
+  color: #0a0e12;
+}
+
+.pixel-badge--danger:hover {
+  background: rgb(var(--px-red));
+  border-color: rgb(var(--px-red));
+
+  color: #0a0e12;
+
+  transform: translate(-2px, -2px);
+}
+
+.pixel-badge--success {
+  background: rgb(var(--px-green));
+  border-color: rgb(var(--px-green));
+  color: #0a0e12;
+}
+
+.pixel-badge--success:hover {
+  background: rgb(var(--px-green));
+  border-color: rgb(var(--px-green));
+
+  color: #0a0e12;
+
+  transform: translate(-2px, -2px);
+}
+
+.pixel-badge--purple {
+  background: rgb(var(--px-purple));
+  border-color: rgb(var(--px-purple));
+  color: #0a0e12;
+}
+
+.pixel-badge--purple:hover {
+  background: rgb(var(--px-purple));
+  border-color: rgb(var(--px-purple));
+
+  color: #0a0e12;
+
+  transform: translate(-2px, -2px);
+}
+
+/* ---------------------------------------------------------------
+   VIDEO
+--------------------------------------------------------------- */
 
 .video-wrapper {
   aspect-ratio: 16 / 9;
@@ -37,6 +342,10 @@
   width: 100%;
   height: 100%;
 }
+
+/* ---------------------------------------------------------------
+   NAVIGATION
+--------------------------------------------------------------- */
 
 input#nav-toggle:checked ~ label#show-button {
   @apply hidden;
@@ -50,27 +359,42 @@ input#nav-toggle:checked ~ #nav-menu {
   @apply block md:flex;
 }
 
+/* ---------------------------------------------------------------
+   THEME TOGGLE
+--------------------------------------------------------------- */
+
 .sun {
   @apply stroke-zinc-500 transition-all;
 }
+
 .moon {
   @apply stroke-transparent transition-all;
 }
-.dark .moon {
+
+.dark .sun {
   @apply stroke-transparent;
 }
-.dark .sun {
+
+.dark .moon {
   @apply stroke-zinc-400;
 }
+
+/* ---------------------------------------------------------------
+   THEME TOGGLE HOVER
+--------------------------------------------------------------- */
+
 #themeToggle:hover .moon {
   @apply stroke-zinc-800;
 }
+
 #themeToggle:hover .sun {
   @apply stroke-transparent;
 }
-.dark #themeToggle:hover .moon {
+
+.dark #themeToggle:hover .sun {
   @apply stroke-transparent;
 }
-.dark #themeToggle:hover .sun {
+
+.dark #themeToggle:hover .moon {
   @apply stroke-zinc-200;
 }

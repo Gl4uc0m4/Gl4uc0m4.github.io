@@ -5,6 +5,7 @@ import FeaturedVideos from '@components/FeaturedVideos.astro';
 import Footer from '@components/Footer.astro';
 import config from '@config/config.json';
 import { createOgImage } from '@utils/createOgImage';
+import PokemonWalker from '@components/PokemonWalker.astro';
 
 import '@styles/global.css';
 
@@ -31,56 +32,412 @@ const ogImage = createOgImage({
 <!doctype html>
 <html lang={config.site.lang}>
   <head>
-    <!-- favicon -->
     <link rel="shortcut icon" href={config.site.favicon} />
-    <!-- theme meta -->
-    <meta name="theme-name" content="bookworm-light-astro" />
-    <meta name="msapplication-TileColor" content="#000000" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-name" content="bookworm-pixel-astro" />
+    <meta name="msapplication-TileColor" content="#0b0e14" />
+
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#eee9dc"
+    />
+
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#080b10"
+    />
+
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- responsive meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
 
     <title>{meta_title ? meta_title : title ? title : config.site.title}</title>
-    <meta name="title" content={meta_title ? meta_title : title ? title : config.site.title} />
-    <link rel="canonical" href={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`} item-prop="url" />
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
-    <meta name="description" content={description ? description : config.metadata.meta_description} />
-    <!-- author from config.json -->
-    <meta name="author" content={config.metadata.meta_author} />
-    <!-- og-title -->
-    <meta property="og:title" content={meta_title ? meta_title : title ? title : config.site.title} />
-    <!-- og-description -->
-    <meta property="og:description" content={description ? description : config.metadata.meta_description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`} />
 
-    <!-- twitter-title -->
-    <meta name="twitter:title" content={meta_title ? meta_title : title ? title : config.site.title} />
-    <!-- twitter-description -->
-    <meta name="twitter:description" content={description ? description : config.metadata.meta_description} />
-    <!-- og-image -->
+    <meta
+      name="title"
+      content={meta_title ? meta_title : title ? title : config.site.title}
+    />
+
+    <link
+      rel="canonical"
+      href={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`}
+      item-prop="url"
+    />
+
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <meta
+      name="description"
+      content={description ? description : config.metadata.meta_description}
+    />
+
+    <meta name="author" content={config.metadata.meta_author} />
+
+    <meta
+      property="og:title"
+      content={meta_title ? meta_title : title ? title : config.site.title}
+    />
+
+    <meta
+      property="og:description"
+      content={description ? description : config.metadata.meta_description}
+    />
+
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:url"
+      content={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`}
+    />
+
+    <meta
+      name="twitter:title"
+      content={meta_title ? meta_title : title ? title : config.site.title}
+    />
+
+    <meta
+      name="twitter:description"
+      content={description ? description : config.metadata.meta_description}
+    />
+
     <meta property="og:image" content={ogImage} />
-    <!-- twitter-image -->
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script is:inline src="/registerSW.js"></script>
     <link rel="manifest" href="/manifest.webmanifest" />
+
     <ViewTransitions />
   </head>
- <body class="bg-neutral-200 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 antialiased leading-relaxed">
+
+  <body class="site-shell">
+    <div class="site-noise" aria-hidden="true"></div>
+    <div class="site-grid" aria-hidden="true"></div>
+
     <Header />
+
     {!blogpost && <Hero />}
-    <main class="mx-auto max-w-screen-lg px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+
+    <main class="site-main">
       <slot />
     </main>
+
     {!blogpost && config.features.youtube && <FeaturedVideos />}
+
     <Footer />
+<PokemonWalker />
     <script>
       // This is a hack to get vite-plugin-pwa to generate a sw.js file.
       // Do not remove this script tag.
     </script>
+
+      
   </body>
 </html>
+
+<style>
+  /* ============================================================
+     RETRO PIXEL SYSTEM
+  ============================================================ */
+
+  :global(:root) {
+    --retro-paper: #eee9dc;
+    --retro-paper-deep: #e5dfd0;
+
+    --retro-ink: #182027;
+    --retro-muted: #667078;
+
+    --retro-grid: rgb(24 32 39 / 0.055);
+
+    --retro-orange: #ff6b35;
+    --retro-cyan: #00a9c7;
+    --retro-yellow: #e7b91d;
+
+    --retro-shadow: #26343a;
+  }
+
+
+  /* ============================================================
+     BODY / BACKGROUND
+  ============================================================ */
+
+  .site-shell {
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    color: var(--retro-ink);
+
+    background:
+      radial-gradient(
+        circle at 15% 10%,
+        rgb(255 255 255 / 0.65),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 85% 75%,
+        rgb(255 107 53 / 0.055),
+        transparent 25%
+      ),
+      linear-gradient(
+        180deg,
+        var(--retro-paper),
+        var(--retro-paper-deep)
+      );
+
+    isolation: isolate;
+  }
+
+
+  /* ============================================================
+     PIXEL GRID
+  ============================================================ */
+
+  .site-grid {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background-image:
+      linear-gradient(
+        to right,
+        var(--retro-grid) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        var(--retro-grid) 1px,
+        transparent 1px
+      );
+
+    background-size: 24px 24px;
+
+    mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      rgb(0 0 0 / 0.7) 55%,
+      transparent 100%
+    );
+  }
+
+
+  /* ============================================================
+     CRT / PAPER GRAIN
+  ============================================================ */
+
+  .site-noise {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    opacity: 0.22;
+
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        rgb(0 0 0 / 0.025) 4px
+      );
+
+    mix-blend-mode: multiply;
+  }
+
+
+  /* ============================================================
+     MAIN CONTENT
+  ============================================================ */
+
+  .site-main {
+    position: relative;
+
+    width: min(
+      calc(100% - 2rem),
+      64rem
+    );
+
+    margin-inline: auto;
+
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+
+  /* ============================================================
+     PIXEL CORNERS / DECORATION
+  ============================================================ */
+
+  .site-main::before {
+    content: '';
+
+    position: absolute;
+
+    top: 1.25rem;
+    left: -0.5rem;
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--retro-orange);
+
+    box-shadow:
+      8px 0 var(--retro-orange),
+      0 8px var(--retro-orange);
+  }
+
+  .site-main::after {
+    content: '';
+
+    position: absolute;
+
+    right: -0.5rem;
+    bottom: 1.25rem;
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--retro-cyan);
+
+    box-shadow:
+      -8px 0 var(--retro-cyan),
+      0 -8px var(--retro-cyan);
+  }
+
+
+  /* ============================================================
+     DARK MODE — CRT TERMINAL
+  ============================================================ */
+
+  :global(.dark) .site-shell {
+    color: #e8edf0;
+
+    background:
+      radial-gradient(
+        circle at 50% -10%,
+        rgb(0 217 255 / 0.055),
+        transparent 32%
+      ),
+      radial-gradient(
+        circle at 85% 80%,
+        rgb(255 107 53 / 0.045),
+        transparent 25%
+      ),
+      #080b10;
+  }
+
+  :global(.dark) .site-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        rgb(255 255 255 / 0.018) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(255 255 255 / 0.018) 1px,
+        transparent 1px
+      );
+
+    opacity: 0.8;
+  }
+
+  :global(.dark) .site-noise {
+    opacity: 0.35;
+
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgb(255 255 255 / 0.025) 0,
+        rgb(255 255 255 / 0.025) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+
+    mix-blend-mode: screen;
+  }
+
+
+  /* ============================================================
+     DARK PIXEL MARKERS
+  ============================================================ */
+
+  :global(.dark) .site-main::before {
+    background: var(--retro-orange);
+
+    box-shadow:
+      8px 0 var(--retro-orange),
+      0 8px var(--retro-orange);
+  }
+
+  :global(.dark) .site-main::after {
+    background: var(--retro-cyan);
+
+    box-shadow:
+      -8px 0 var(--retro-cyan),
+      0 -8px var(--retro-cyan);
+  }
+
+
+  /* ============================================================
+     MOBILE
+  ============================================================ */
+
+  @media (max-width: 767px) {
+    .site-main {
+      width: min(
+        calc(100% - 1rem),
+        64rem
+      );
+
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+
+    .site-grid {
+      background-size: 20px 20px;
+    }
+
+    .site-main::before {
+      left: 0;
+    }
+
+    .site-main::after {
+      right: 0;
+    }
+  }
+
+
+  /* ============================================================
+     REDUCED MOTION
+  ============================================================ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-noise,
+    .site-grid {
+      scroll-behavior: auto;
+    }
+  }
+</style>

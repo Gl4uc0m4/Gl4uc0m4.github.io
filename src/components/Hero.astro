@@ -6,46 +6,947 @@ import social from '@config/social';
 const socialItems = social.networks;
 ---
 
-<section class="bg-zinc-50 dark:bg-zinc-900">
-  <div class="mx-auto max-w-screen-lg px-4 py-0 pb-6 sm:px-6 sm:pb-12 lg:px-8">
-    
-    <!-- HERO ORIGINAL -->
-    <div class="flex items-start justify-between">
-      <div class="w-3/5 rounded-lg">
-        <h1 class="mb-0 text-lg font-bold text-zinc-900 dark:text-white sm:text-3xl md:text-2xl">
+<section class="hero-retro">
+
+  <div class="hero-retro__scanlines"></div>
+
+  <div class="hero-retro__inner">
+
+    <!-- =========================================================
+         HEADER / LABEL
+    ========================================================== -->
+
+    <div class="hero-terminal">
+
+      <span class="hero-terminal__dot"></span>
+
+      <span>PLAYER::PROFILE</span>
+
+      <span class="hero-terminal__status">
+        ONLINE
+      </span>
+
+    </div>
+
+
+    <!-- =========================================================
+         CONTENT
+    ========================================================== -->
+
+    <div class="hero-content">
+
+      <!-- =======================================================
+           TEXT
+      ======================================================== -->
+
+      <div class="hero-info">
+
+        <div class="hero-kicker">
+          <span>&gt;</span>
+          SYSTEM USER
+        </div>
+
+
+        <h1 class="hero-name">
           {config.author.name}
         </h1>
-        <p class="mt-1.5 text-sm text-zinc-500 dark:text-zinc-400 md:text-lg">
+
+
+        <div class="hero-divider">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+
+        <p class="hero-bio">
           {config.author.bio}
         </p>
-        <div class="m-auto flex space-x-5 pt-8">
-          {
-            socialItems?.map((item) => (
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
-                <figure>
-                  <Fragment set:html={item.svg} />
-                </figure>
-              </a>
-            ))
-          }
+
+
+        <!-- =====================================================
+             SOCIAL
+        ====================================================== -->
+
+        <div class="social-area">
+
+          <span class="social-label">
+            CONNECT_WITH_ME::
+          </span>
+
+
+          <div class="social-list">
+
+            {
+              socialItems?.map((item) => (
+
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-chip"
+                  aria-label={item.name}
+                >
+
+                  <span class="social-chip__icon">
+                    <Fragment set:html={item.svg} />
+                  </span>
+
+                  <span class="social-chip__name">
+                    {item.name}
+                  </span>
+
+                </a>
+
+              ))
+            }
+
+          </div>
+
         </div>
+
       </div>
 
-      <!-- Avatar mejorado -->
-      <div class="rounded-full overflow-hidden shadow-lg transform transition hover:scale-105">
-        <figure class="right-0">
-          <Image
-            class="w-28 h-28 rounded-full md:w-36 md:h-36 object-cover"
-            width={512}
-            height={512}
-            src={config.author.avatar}
-            alt={config.author.name}
-            decoding="async"
-            loading="lazy"
-          />
-        </figure>
+
+      <!-- =======================================================
+           AVATAR
+      ======================================================== -->
+
+      <div class="avatar-wrapper">
+
+        <div class="avatar-label">
+          ID::001
+        </div>
+
+
+        <div class="avatar-frame">
+
+          <div class="avatar-corners"></div>
+
+          <div class="avatar-image">
+
+            <Image
+              width={512}
+              height={512}
+              src={config.author.avatar}
+              alt={config.author.name}
+              decoding="async"
+              loading="lazy"
+            />
+
+          </div>
+
+          <div class="avatar-scanline"></div>
+
+        </div>
+
+
+        <div class="avatar-status">
+
+          <span class="status-dot"></span>
+
+          <span>ACTIVE</span>
+
+        </div>
+
       </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         FOOTER BAR
+    ========================================================== -->
+
+    <div class="hero-footer">
+
+      <span>
+        POKE::SYSTEM
+      </span>
+
+      <span class="hero-footer__line"></span>
+
+      <span>
+        8BIT_MODE
+      </span>
+
+      <span class="hero-footer__line"></span>
+
+      <span>
+        READY_
+      </span>
+
     </div>
 
   </div>
+
 </section>
+
+
+<style>
+  /* ============================================================
+     HERO RETRO — SUAVE
+  ============================================================ */
+
+  .hero-retro {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    color: rgb(var(--color-text-body));
+
+    /* Crema suave, no blanco */
+    background:
+      linear-gradient(
+        180deg,
+        #e8e2d5 0%,
+        #e3ddcf 100%
+      );
+
+    border-bottom: 1px solid rgb(var(--px-border));
+  }
+
+
+  /* ============================================================
+     CUADRÍCULA
+  ============================================================ */
+
+  .hero-retro::before {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+      linear-gradient(
+        to right,
+        rgb(24 32 39 / 0.055) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(24 32 39 / 0.055) 1px,
+        transparent 1px
+      );
+
+    background-size: 24px 24px;
+
+    opacity: 0.7;
+
+    z-index: 0;
+  }
+
+
+  /* ============================================================
+     CONTENIDO
+  ============================================================ */
+
+  .hero-retro__inner {
+    position: relative;
+    z-index: 2;
+
+    width: min(
+      calc(100% - 2rem),
+      64rem
+    );
+
+    margin-inline: auto;
+
+    padding:
+      1.25rem
+      0
+      1.5rem;
+  }
+
+
+  /* ============================================================
+     SCANLINES — MUY SUTILES
+  ============================================================ */
+
+  .hero-retro__scanlines {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.05;
+
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 4px,
+        rgb(0 0 0 / 0.08) 5px
+      );
+
+    z-index: 1;
+  }
+
+
+  /* ============================================================
+     TERMINAL
+  ============================================================ */
+
+  .hero-terminal {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    width: fit-content;
+
+    margin-bottom: 1.25rem;
+
+    padding: 5px 9px;
+
+    border: 1px solid rgb(var(--px-border));
+
+    background: #ddd6c8;
+
+    color: rgb(var(--color-text-body));
+
+    font-family:
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 0.42rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    box-shadow:
+      3px 3px 0 rgb(38 52 58 / 0.15);
+  }
+
+
+  .hero-terminal__dot {
+    width: 6px;
+    height: 6px;
+
+    background: rgb(var(--px-cyan));
+
+    box-shadow:
+      4px 0 rgb(var(--px-cyan));
+  }
+
+
+  .hero-terminal__status {
+    margin-left: 8px;
+
+    color: rgb(var(--px-cyan));
+  }
+
+
+  /* ============================================================
+     CONTENT
+  ============================================================ */
+
+  .hero-content {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 2rem;
+  }
+
+
+  .hero-info {
+    min-width: 0;
+    flex: 1;
+  }
+
+
+  /* ============================================================
+     KICKER
+  ============================================================ */
+
+  .hero-kicker {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin-bottom: 0.5rem;
+
+    color: rgb(var(--px-orange));
+
+    font-family:
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 0.45rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+  }
+
+
+  .hero-kicker span {
+    color: rgb(var(--px-cyan));
+  }
+
+
+  /* ============================================================
+     NOMBRE
+  ============================================================ */
+
+  .hero-name {
+    margin: 0;
+
+    color: rgb(var(--color-text-heading));
+
+    font-family:
+      'Press Start 2P',
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 1.15rem;
+
+    line-height: 1.7;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.02em;
+
+    text-shadow:
+      3px 3px 0 rgb(var(--px-orange));
+  }
+
+
+  @media (min-width: 768px) {
+    .hero-name {
+      font-size: 1.75rem;
+    }
+  }
+
+
+  /* ============================================================
+     DIVISOR PIXEL
+  ============================================================ */
+
+  .hero-divider {
+    display: flex;
+
+    gap: 3px;
+
+    margin:
+      0.8rem
+      0
+      1rem;
+  }
+
+
+  .hero-divider span {
+    width: 8px;
+    height: 4px;
+
+    background: rgb(var(--px-border));
+  }
+
+
+  .hero-divider span:nth-child(1) {
+    width: 24px;
+    background: rgb(var(--px-orange));
+  }
+
+
+  .hero-divider span:nth-child(2) {
+    background: rgb(var(--px-cyan));
+  }
+
+
+  /* ============================================================
+     BIO
+  ============================================================ */
+
+  .hero-bio {
+    max-width: 42rem;
+
+    margin: 0;
+
+    color: rgb(var(--color-text-body));
+
+    font-size: 0.85rem;
+
+    line-height: 1.7;
+  }
+
+
+  @media (min-width: 768px) {
+    .hero-bio {
+      font-size: 1rem;
+    }
+  }
+
+
+  /* ============================================================
+     SOCIAL
+  ============================================================ */
+
+  .social-area {
+    margin-top: 1.25rem;
+  }
+
+
+  .social-label {
+    display: block;
+
+    margin-bottom: 0.5rem;
+
+    color: rgb(var(--retro-muted, 102 112 120));
+
+    font-family:
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 0.4rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+  }
+
+
+  .social-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+  }
+
+
+  .social-chip {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    min-width: 36px;
+    height: 34px;
+
+    padding: 0 9px;
+
+    border: 2px solid rgb(var(--px-border));
+
+    background: #ddd6c8;
+
+    color: rgb(var(--color-text-body));
+
+    text-decoration: none;
+
+    font-family:
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 0.4rem;
+
+    font-weight: 800;
+
+    transition:
+      transform 0.1s steps(2),
+      background 0.1s steps(2),
+      color 0.1s steps(2);
+
+    box-shadow:
+      2px 2px 0 rgb(38 52 58 / 0.12);
+  }
+
+
+  .social-chip__icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .social-chip__icon :global(svg) {
+    width: 14px;
+    height: 14px;
+
+    fill: currentColor;
+  }
+
+
+  .social-chip__name {
+    display: none;
+  }
+
+
+  @media (min-width: 640px) {
+    .social-chip__name {
+      display: inline;
+    }
+  }
+
+
+  .social-chip:hover {
+    transform:
+      translate(-2px, -2px);
+
+    background:
+      rgb(var(--px-cyan));
+
+    color: #182027;
+
+    box-shadow:
+      3px 3px 0
+      rgb(var(--px-orange));
+  }
+
+
+  /* ============================================================
+     AVATAR
+  ============================================================ */
+
+  .avatar-wrapper {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    width: 112px;
+  }
+
+
+  @media (min-width: 768px) {
+    .avatar-wrapper {
+      width: 150px;
+    }
+  }
+
+
+  .avatar-label {
+    position: absolute;
+
+    top: -9px;
+    left: 8px;
+
+    z-index: 5;
+
+    padding: 3px 5px;
+
+    background: #ddd6c8;
+
+    border: 1px solid rgb(var(--px-border));
+
+    color: rgb(var(--px-cyan));
+
+    font-family:
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 0.35rem;
+
+    font-weight: 800;
+  }
+
+
+  /* ============================================================
+     AVATAR FRAME
+  ============================================================ */
+
+  .avatar-frame {
+    position: relative;
+
+    padding: 7px;
+
+    background: #d6d0c2;
+
+    border: 3px solid rgb(var(--px-border));
+
+    box-shadow:
+      5px 5px 0
+      rgb(38 52 58 / 0.22);
+  }
+
+
+  .avatar-image {
+    position: relative;
+
+    overflow: hidden;
+
+    aspect-ratio: 1 / 1;
+
+    background: #20282d;
+  }
+
+
+  .avatar-image :global(img) {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    image-rendering: pixelated;
+  }
+
+
+  /* ============================================================
+     ESQUINAS PIXEL
+  ============================================================ */
+
+  .avatar-corners {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    border: 2px solid rgb(var(--px-cyan));
+
+    clip-path:
+      polygon(
+        0 0,
+        20px 0,
+        20px 2px,
+        2px 2px,
+        2px 20px,
+        0 20px,
+
+        100% 0,
+        calc(100% - 20px) 0,
+        calc(100% - 20px) 2px,
+        calc(100% - 2px) 2px,
+        calc(100% - 2px) 20px,
+        100% 20px,
+
+        0 100%,
+        20px 100%,
+        20px calc(100% - 2px),
+        2px calc(100% - 2px),
+        2px calc(100% - 20px),
+        0 calc(100% - 20px),
+
+        100% 100%,
+        calc(100% - 20px) 100%,
+        calc(100% - 20px) calc(100% - 2px),
+        calc(100% - 2px) calc(100% - 2px),
+        calc(100% - 2px) calc(100% - 20px),
+        100% calc(100% - 20px)
+      );
+  }
+
+
+  /* ============================================================
+     SCANLINE AVATAR
+  ============================================================ */
+
+  .avatar-scanline {
+    position: absolute;
+
+    inset: 7px;
+
+    pointer-events: none;
+
+    opacity: 0.12;
+
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 4px,
+        rgb(255 255 255 / 0.12) 5px
+      );
+  }
+
+
+  /* ============================================================
+     STATUS
+  ============================================================ */
+
+  .avatar-status {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 8px;
+
+    color: rgb(var(--px-cyan));
+
+    font-family:
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 0.38rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+  }
+
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+
+    background:
+      rgb(var(--px-cyan));
+
+    box-shadow:
+      3px 0 rgb(var(--px-cyan));
+  }
+
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+
+  .hero-footer {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 1.5rem;
+
+    color:
+      rgb(var(--retro-muted, 102 112 120));
+
+    font-family:
+      'JetBrains Mono',
+      monospace;
+
+    font-size: 0.35rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+  }
+
+
+  .hero-footer__line {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+      rgb(var(--px-border));
+  }
+
+
+  /* ============================================================
+     MOBILE
+  ============================================================ */
+
+  @media (max-width: 639px) {
+
+    .hero-retro__inner {
+      padding-top: 1rem;
+    }
+
+
+    .hero-content {
+      align-items: flex-start;
+
+      gap: 1rem;
+    }
+
+
+    .hero-name {
+      font-size: 0.85rem;
+
+      text-shadow:
+        2px 2px 0
+        rgb(var(--px-orange));
+    }
+
+
+    .hero-bio {
+      font-size: 0.75rem;
+    }
+
+
+    .avatar-wrapper {
+      width: 90px;
+    }
+
+
+    .avatar-frame {
+      padding: 5px;
+
+      border-width: 2px;
+
+      box-shadow:
+        3px 3px 0
+        rgb(38 52 58 / 0.22);
+    }
+
+
+    .avatar-scanline {
+      inset: 5px;
+    }
+
+
+    .hero-footer {
+      margin-top: 1rem;
+    }
+  }
+
+
+  /* ============================================================
+     DARK MODE
+  ============================================================ */
+
+  :global(.dark) .hero-retro {
+    background:
+      #0c1015;
+  }
+
+
+  :global(.dark) .hero-retro::before {
+    background-image:
+      linear-gradient(
+        to right,
+        rgb(255 255 255 / 0.025) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(255 255 255 / 0.025) 1px,
+        transparent 1px
+      );
+  }
+
+
+  :global(.dark) .hero-terminal,
+  :global(.dark) .social-chip,
+  :global(.dark) .avatar-label {
+    background: #151b21;
+  }
+
+
+  :global(.dark) .avatar-frame {
+    background: #11171c;
+
+    box-shadow:
+      5px 5px 0 #020406;
+  }
+
+
+  /* ============================================================
+     REDUCED MOTION
+  ============================================================ */
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .social-chip {
+      transition: none;
+    }
+  }
+</style>

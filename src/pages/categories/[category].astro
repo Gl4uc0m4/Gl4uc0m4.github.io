@@ -23,17 +23,803 @@ const filterByCategory = taxonomyFilter(posts, 'categories', category);
 ---
 
 <Base>
-  <h1 class="mb-8 text-2xl font-bold capitalize md:text-3xl">Category: {deslugify(category)}</h1>
-  <ul class="ml-4 space-y-4 text-left text-zinc-500 dark:text-zinc-400">
-    {
-      filterByCategory?.map((post) => (
-        <li class="flex items-center space-x-1">
-          <CategoryIcon />
-          <a href={`/blog/${post.slug}`} class="text-zinc-500 hover:text-zinc-800 dark:text-zinc-400">
-            {post.data.title}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+
+  <section class="category-page">
+
+    <!-- CABECERA -->
+
+    <div class="category-heading">
+
+      <div class="category-heading__left">
+
+        <span class="category-kicker">
+          CATEGORY::QUERY
+        </span>
+
+        <h1>
+          Category: {deslugify(category)}
+        </h1>
+
+      </div>
+
+      <span class="category-heading__status">
+        [ RESULTS ]
+      </span>
+
+    </div>
+
+
+    <!-- RESULTADOS -->
+
+    <div class="category-results">
+
+      <div class="category-results__header">
+
+        <span>
+          QUERY::{deslugify(category)}
+        </span>
+
+        <span>
+          MATCHES::{filterByCategory?.length ?? 0}
+        </span>
+
+      </div>
+
+
+      <ul class="category-posts">
+
+        {
+          filterByCategory?.map((post, index) => (
+
+            <li class="category-post">
+
+              <a
+                href={`/blog/${post.slug}`}
+                class="category-post__link"
+              >
+
+                <span class="category-post__index">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+
+                <span class="category-post__icon">
+                  <CategoryIcon />
+                </span>
+
+                <span class="category-post__title">
+                  {post.data.title}
+                </span>
+
+                <span class="category-post__arrow">
+                  &gt;&gt;
+                </span>
+
+              </a>
+
+            </li>
+
+          ))
+        }
+
+      </ul>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="category-footer">
+
+      <span>
+        STATUS:: COMPLETE
+      </span>
+
+      <span>
+        END_OF_QUERY_
+      </span>
+
+    </div>
+
+  </section>
+
 </Base>
+
+
+<style>
+
+/* ================================================================
+   SECTION
+================================================================ */
+
+.category-page {
+
+  position:
+    relative;
+
+  width:
+    min(
+      calc(100% - 2rem),
+      64rem
+    );
+
+  margin-inline:
+    auto;
+
+  padding-bottom:
+    3rem;
+
+}
+
+
+/* ================================================================
+   GRID DE FONDO
+================================================================ */
+
+.category-page::before {
+
+  content:
+    '';
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    -1;
+
+  pointer-events:
+    none;
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgb(48 57 54 / 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(48 57 54 / 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    20px 20px;
+
+}
+
+
+:global(.dark) .category-page::before {
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgb(255 255 255 / 0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0.018) 1px,
+      transparent 1px
+    );
+
+}
+
+
+/* ================================================================
+   HEADING
+================================================================ */
+
+.category-heading {
+
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    1rem;
+
+  margin-bottom:
+    1rem;
+
+  padding-bottom:
+    0.7rem;
+
+  border-bottom:
+    2px solid
+    #303936;
+
+}
+
+
+:global(.dark) .category-heading {
+
+  border-color:
+    #4b5951;
+
+}
+
+
+/* ================================================================
+   KICKER
+================================================================ */
+
+.category-kicker {
+
+  display:
+    block;
+
+  margin-bottom:
+    0.25rem;
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.48rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.12em;
+
+  color:
+    #7b837e;
+
+}
+
+
+/* ================================================================
+   TITLE
+================================================================ */
+
+.category-heading h1 {
+
+  margin:
+    0;
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    1rem;
+
+  font-weight:
+    800;
+
+  line-height:
+    1.3;
+
+  letter-spacing:
+    0.02em;
+
+  text-transform:
+    uppercase;
+
+  color:
+    #303936;
+
+}
+
+
+:global(.dark) .category-heading h1 {
+
+  color:
+    #d6ddd8;
+
+}
+
+
+/* ================================================================
+   STATUS
+================================================================ */
+
+.category-heading__status {
+
+  flex-shrink:
+    0;
+
+  padding:
+    4px 7px;
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.48rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.08em;
+
+  color:
+    #63776b;
+
+  border:
+    1px solid
+    #829187;
+
+  background:
+    rgb(99 119 107 / 0.06);
+
+}
+
+
+/* ================================================================
+   RESULTS
+================================================================ */
+
+.category-results {
+
+  overflow:
+    hidden;
+
+  background:
+    #ded9cc;
+
+  border:
+    2px solid
+    #303936;
+
+  box-shadow:
+    4px 4px 0
+    #303936;
+
+}
+
+
+:global(.dark) .category-results {
+
+  background:
+    #151b18;
+
+  border-color:
+    #4e5b53;
+
+  box-shadow:
+    4px 4px 0
+    #4e5b53;
+
+}
+
+
+/* ================================================================
+   RESULTS HEADER
+================================================================ */
+
+.category-results__header {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    1rem;
+
+  padding:
+    0.55rem 0.75rem;
+
+  background:
+    rgb(48 57 54 / 0.06);
+
+  border-bottom:
+    1px dashed
+    #a1a69f;
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.45rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.05em;
+
+  text-transform:
+    uppercase;
+
+  color:
+    #7b837e;
+
+}
+
+
+:global(.dark) .category-results__header {
+
+  border-color:
+    #3b453f;
+
+}
+
+
+/* ================================================================
+   POSTS
+================================================================ */
+
+.category-posts {
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  list-style:
+    none;
+
+}
+
+
+/* ================================================================
+   POST
+================================================================ */
+
+.category-post {
+
+  border-bottom:
+    1px solid
+    rgb(48 57 54 / 0.16);
+
+}
+
+
+.category-post:last-child {
+
+  border-bottom:
+    0;
+
+}
+
+
+/* ================================================================
+   LINK
+================================================================ */
+
+.category-post__link {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    2rem 1.25rem 1fr auto;
+
+  align-items:
+    center;
+
+  gap:
+    0.65rem;
+
+  min-height:
+    52px;
+
+  padding:
+    0.65rem 0.8rem;
+
+  text-decoration:
+    none;
+
+  transition:
+    background 0.12s steps(2),
+    padding 0.12s steps(2);
+
+}
+
+
+.category-post__link:hover {
+
+  padding-left:
+    1rem;
+
+  background:
+    rgb(99 119 107 / 0.08);
+
+}
+
+
+/* ================================================================
+   INDEX
+================================================================ */
+
+.category-post__index {
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.45rem;
+
+  font-weight:
+    700;
+
+  color:
+    #89918c;
+
+}
+
+
+/* ================================================================
+   ICON
+================================================================ */
+
+.category-post__icon {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  color:
+    #63776b;
+
+}
+
+
+.category-post__icon :global(svg) {
+
+  width:
+    0.8rem;
+
+  height:
+    0.8rem;
+
+}
+
+
+/* ================================================================
+   TITLE
+================================================================ */
+
+.category-post__title {
+
+  min-width:
+    0;
+
+  overflow:
+    hidden;
+
+  font-family:
+    'Source Sans 3',
+    sans-serif;
+
+  font-size:
+    0.85rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.4;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+
+  color:
+    #303936;
+
+}
+
+
+:global(.dark) .category-post__title {
+
+  color:
+    #d2d8d3;
+
+}
+
+
+/* ================================================================
+   ARROW
+================================================================ */
+
+.category-post__arrow {
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.55rem;
+
+  font-weight:
+    700;
+
+  color:
+    #63776b;
+
+  transition:
+    transform 0.12s steps(2);
+
+}
+
+
+.category-post__link:hover .category-post__arrow {
+
+  transform:
+    translateX(3px);
+
+}
+
+
+/* ================================================================
+   FOOTER
+================================================================ */
+
+.category-footer {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin-top:
+    1rem;
+
+  padding-top:
+    0.6rem;
+
+  border-top:
+    1px dashed
+    #a1a69f;
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.43rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.05em;
+
+  color:
+    #7b837e;
+
+}
+
+
+:global(.dark) .category-footer {
+
+  border-color:
+    #3b453f;
+
+}
+
+
+/* ================================================================
+   MOBILE
+================================================================ */
+
+@media (max-width: 640px) {
+
+  .category-page {
+
+    width:
+      min(
+        calc(100% - 1rem),
+        64rem
+      );
+
+  }
+
+
+  .category-heading {
+
+    align-items:
+      center;
+
+  }
+
+
+  .category-heading h1 {
+
+    max-width:
+      14rem;
+
+    font-size:
+      0.85rem;
+
+  }
+
+
+  .category-heading__status {
+
+    font-size:
+      0.42rem;
+
+  }
+
+
+  .category-results__header {
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    gap:
+      0.2rem;
+
+  }
+
+
+  .category-post__link {
+
+    grid-template-columns:
+      1.5rem 1rem 1fr auto;
+
+    gap:
+      0.5rem;
+
+    min-height:
+      48px;
+
+    padding:
+      0.6rem;
+
+  }
+
+
+  .category-post__title {
+
+    font-size:
+      0.78rem;
+
+  }
+
+}
+
+
+/* ================================================================
+   REDUCED MOTION
+================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .category-post__link,
+  .category-post__arrow {
+
+    transition:
+      none;
+
+  }
+
+}
+
+</style>

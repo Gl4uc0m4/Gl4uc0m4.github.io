@@ -2,12 +2,297 @@
 import RightArrowIcon from '@components/icons/RightArrowIcon.astro';
 ---
 
-<div class="m-auto mt-12 text-right">
-<a
-  class="inline-block rounded border border-gray-700 px-12 py-3 text-sm font-medium text-gray-700 transition-all hover:bg-gray-700 hover:text-white focus:outline-none focus:ring active:bg-gray-800 dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-500 dark:hover:text-white"
-  href="/blog"
->
-    All Posts
-    <RightArrowIcon />
+<div class="archive-navigation">
+
+  <a
+    class="archive-navigation__link"
+    href="/blog"
+  >
+
+    <span class="archive-navigation__label">
+      ARCHIVE::BLOG
+    </span>
+
+    <span class="archive-navigation__text">
+      ALL POSTS
+    </span>
+
+    <span class="archive-navigation__arrow">
+      <RightArrowIcon />
+    </span>
+
   </a>
+
 </div>
+
+
+<style>
+
+/* ================================================================
+   NAVIGATION
+================================================================ */
+
+.archive-navigation {
+
+  display:
+    flex;
+
+  justify-content:
+    flex-end;
+
+  width:
+    min(
+      calc(100% - 2rem),
+      64rem
+    );
+
+  margin:
+    3rem auto 0;
+
+}
+
+
+/* ================================================================
+   LINK
+================================================================ */
+
+.archive-navigation__link {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    0.8rem;
+
+  min-height:
+    48px;
+
+  padding:
+    0.65rem 0.8rem;
+
+  background:
+    #ded9cc;
+
+  border:
+    2px solid
+    #303936;
+
+  box-shadow:
+    4px 4px 0
+    #303936;
+
+  text-decoration:
+    none;
+
+  transition:
+    transform 0.12s steps(2),
+    box-shadow 0.12s steps(2),
+    background 0.12s steps(2);
+
+}
+
+
+:global(.dark) .archive-navigation__link {
+
+  background:
+    #151b18;
+
+  border-color:
+    #4e5b53;
+
+  box-shadow:
+    4px 4px 0
+    #4e5b53;
+
+}
+
+
+/* ================================================================
+   HOVER
+================================================================ */
+
+.archive-navigation__link:hover {
+
+  transform:
+    translate(2px, 2px);
+
+  box-shadow:
+    2px 2px 0
+    #303936;
+
+  background:
+    #d3cec1;
+
+}
+
+
+:global(.dark) .archive-navigation__link:hover {
+
+  box-shadow:
+    2px 2px 0
+    #4e5b53;
+
+  background:
+    #1b231f;
+
+}
+
+
+/* ================================================================
+   LABEL
+================================================================ */
+
+.archive-navigation__label {
+
+  padding-right:
+    0.8rem;
+
+  border-right:
+    1px dashed
+    #a1a69f;
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.42rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.06em;
+
+  color:
+    #7b837e;
+
+}
+
+
+/* ================================================================
+   TEXT
+================================================================ */
+
+.archive-navigation__text {
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:
+    0.58rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.05em;
+
+  color:
+    #303936;
+
+}
+
+
+:global(.dark) .archive-navigation__text {
+
+  color:
+    #d2d8d3;
+
+}
+
+
+/* ================================================================
+   ARROW
+================================================================ */
+
+.archive-navigation__arrow {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  color:
+    #63776b;
+
+  transition:
+    transform 0.12s steps(2);
+
+}
+
+
+.archive-navigation__arrow :global(svg) {
+
+  width:
+    0.8rem;
+
+  height:
+    0.8rem;
+
+}
+
+
+.archive-navigation__link:hover .archive-navigation__arrow {
+
+  transform:
+    translateX(3px);
+
+}
+
+
+/* ================================================================
+   MOBILE
+================================================================ */
+
+@media (max-width: 640px) {
+
+  .archive-navigation {
+
+    width:
+      min(
+        calc(100% - 1rem),
+        64rem
+      );
+
+  }
+
+
+  .archive-navigation__link {
+
+    width:
+      100%;
+
+    justify-content:
+      space-between;
+
+  }
+
+}
+
+
+/* ================================================================
+   REDUCED MOTION
+================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .archive-navigation__link,
+  .archive-navigation__arrow {
+
+    transition:
+      none;
+
+  }
+
+}
+
+</style>

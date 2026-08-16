@@ -23,48 +23,1496 @@ type PostType = {
 };
 ---
 
-<div class="mx-auto grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+<div class="pixel-grid">
   {
-    posts?.slice(0, config.site.pageSize).map((post: PostType) => (
-      <article class="flex w-full flex-col items-start">
-        <div class="mb-4 block overflow-hidden rounded-lg">
+    posts?.slice(0, config.site.pageSize).map((post: PostType, index: number) => (
+      <article class="pixel-card group">
+
+        <!-- =====================================================
+             IMAGE TERMINAL
+        ====================================================== -->
+
+        <div class="pixel-card__visual">
+
           {post.data.heroImage && (
-            <a href={`/blog/${post.slug}/`}>
-              <figure class="h-auto w-auto object-cover md:h-[150px]">
-                <Image
-                  class="transition duration-300 ease-in-out hover:scale-110"
-                  src={post.data.heroImage}
-                  alt={post.data.title}
-                  width={960}
-                  height={480}
-                  decoding="async"
-                  loading="lazy"
-                />
-              </figure>
+            <a
+              href={`/blog/${post.slug}/`}
+              class="pixel-frame-outer"
+              aria-label={post.data.title}
+            >
+
+              <div class="pixel-frame-inner">
+
+                <div class="pixel-card__bar">
+
+                  <div
+                    class="pixel-card__lights"
+                    aria-hidden="true"
+                  >
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+
+                  <span class="pixel-card__bar-title">
+                    IMG::{String(index + 1).padStart(2, '0')}
+                  </span>
+
+                  <span class="pixel-card__status">
+                    SYS
+                  </span>
+
+                </div>
+
+                <figure class="pixel-card__image">
+
+                  <Image
+                    class="pixel-card__img"
+                    src={post.data.heroImage}
+                    alt={post.data.title}
+                    width={960}
+                    height={480}
+                    decoding="async"
+                    loading="lazy"
+                  />
+
+                  <span class="pixel-card__corner pixel-card__corner--tl" />
+                  <span class="pixel-card__corner pixel-card__corner--tr" />
+                  <span class="pixel-card__corner pixel-card__corner--bl" />
+                  <span class="pixel-card__corner pixel-card__corner--br" />
+
+                  <span class="pixel-card__scanline" />
+
+                  <span class="pixel-card__hud pixel-card__hud--left">
+                    FRAME::ACTIVE
+                  </span>
+
+                  <span class="pixel-card__hud pixel-card__hud--right">
+                    0x{String(index + 1).padStart(2, '0')}
+                  </span>
+
+                </figure>
+
+              </div>
+
             </a>
           )}
+
         </div>
-        <div class="flex items-center gap-x-4 text-xs text-zinc-900 dark:text-white">
-          <FormattedDate date={post.data.pubDate} />
-          {post.data.categories.slice(0, 2).map((item) => (
-            <a
-              href={`/categories/${slugify(item)}`}
-              class="text-md relative z-10 rounded-full bg-zinc-50 px-3 py-1.5 font-medium capitalize text-zinc-600 hover:bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-400"
-            >
-              {item}
-            </a>
-          ))}
+
+
+        <!-- =====================================================
+             META
+        ====================================================== -->
+
+        <div class="pixel-card__meta">
+
+          <span class="date-chip">
+            <span class="date-chip__prefix">
+              DATE::
+            </span>
+
+            <FormattedDate date={post.data.pubDate} />
+          </span>
+
+          <span class="meta-divider">
+            /
+          </span>
+
+          {
+            post.data.categories.slice(0, 2).map((item) => (
+              <a
+                href={`/categories/${slugify(item)}`}
+                class="pixel-badge"
+              >
+                {item}
+              </a>
+            ))
+          }
+
         </div>
-        <div class="relative">
-          <h2 class="mt-3 text-xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+
+
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
+
+        <div class="pixel-card__content">
+
+          <h2 class="card-title">
+
             <a href={`/blog/${post.slug}/`}>
-              <span class="absolute inset-0" />
-              {post.data.title}
+
+              <span
+                class="card-title__arrow"
+                aria-hidden="true"
+              >
+                &gt;
+              </span>
+
+              <span class="card-title__text">
+                {post.data.title}
+              </span>
+
             </a>
+
           </h2>
-          <p class="mt-5 line-clamp-3 text-sm leading-6 text-zinc-600">{post.data.description}</p>
+
+          <p class="card-desc">
+            {post.data.description}
+          </p>
+
         </div>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <div class="pixel-card__footer">
+
+          <span>
+            ARTICLE::{String(index + 1).padStart(2, '0')}
+          </span>
+
+          <span class="pixel-card__footer-status">
+            <i />
+            READ
+          </span>
+
+        </div>
+
       </article>
     ))
   }
 </div>
+
+
+<style>
+
+/* ================================================================
+   GRID
+================================================================ */
+
+.pixel-grid {
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap:
+    3rem 2rem;
+
+  /*
+   * Paleta retro muy sutil.
+   * Nada de colores chillones.
+   */
+
+  --px-accent: #6f8797;
+  --px-accent-soft: #8298a6;
+  --px-accent-dark: #526b7b;
+
+  --px-panel: #151a20;
+  --px-panel-raised: #1b2229;
+
+  --px-border: #303941;
+
+  --px-card-bg: #0d1115;
+  --px-bar-bg: #12181d;
+
+  --px-heading: #e7eaec;
+  --px-body: #8b959c;
+  --px-muted: #626d74;
+
+}
+
+
+/* ================================================================
+   CARD
+================================================================ */
+
+.pixel-card {
+
+  position: relative;
+
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background:
+    var(--px-card-bg);
+
+  border:
+    2px solid var(--px-border);
+
+  box-shadow:
+    6px 6px 0 var(--px-border);
+
+  overflow: hidden;
+
+  font-family:
+    'JetBrains Mono', monospace;
+
+  transition:
+    transform 0.12s steps(2),
+    box-shadow 0.12s steps(2),
+    border-color 0.12s steps(2);
+
+}
+
+
+/* ================================================================
+   CRT SCANLINES
+================================================================ */
+
+.pixel-card::after {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0.015) 0,
+      rgb(255 255 255 / 0.015) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  opacity:
+    0.7;
+
+}
+
+
+/* ================================================================
+   HOVER
+================================================================ */
+
+.pixel-card:hover {
+
+  transform:
+    translate(-3px, -3px);
+
+  border-color:
+    var(--px-accent);
+
+  box-shadow:
+    9px 9px 0 var(--px-border);
+
+}
+
+
+/* ================================================================
+   VISUAL
+================================================================ */
+
+.pixel-card__visual {
+
+  width:
+    100%;
+
+  margin:
+    0;
+
+}
+
+
+/* ================================================================
+   PIXEL FRAME
+================================================================ */
+
+.pixel-frame-outer {
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  padding:
+    3px;
+
+  box-sizing:
+    border-box;
+
+  background:
+    var(--px-border);
+
+  text-decoration:
+    none;
+
+  clip-path:
+    polygon(
+
+      0 10px,
+
+      5px 10px,
+
+      5px 5px,
+
+      10px 5px,
+
+      10px 0,
+
+      calc(100% - 10px) 0,
+
+      calc(100% - 10px) 5px,
+
+      calc(100% - 5px) 5px,
+
+      calc(100% - 5px) 10px,
+
+      100% 10px,
+
+      100% calc(100% - 10px),
+
+      calc(100% - 5px) calc(100% - 10px),
+
+      calc(100% - 5px) calc(100% - 5px),
+
+      calc(100% - 10px) calc(100% - 5px),
+
+      calc(100% - 10px) 100%,
+
+      10px 100%,
+
+      10px calc(100% - 5px),
+
+      5px calc(100% - 5px),
+
+      5px calc(100% - 10px),
+
+      0 calc(100% - 10px)
+
+    );
+
+}
+
+
+/* ================================================================
+   FRAME HOVER
+================================================================ */
+
+.pixel-card:hover .pixel-frame-outer {
+
+  background:
+    var(--px-accent);
+
+}
+
+
+/* ================================================================
+   INNER FRAME
+================================================================ */
+
+.pixel-frame-inner {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  background:
+    var(--px-panel);
+
+}
+
+
+/* ================================================================
+   IMAGE BAR
+================================================================ */
+
+.pixel-card__bar {
+
+  min-height:
+    34px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    0.7rem;
+
+  padding:
+    0 0.7rem;
+
+  box-sizing:
+    border-box;
+
+  background:
+    var(--px-bar-bg);
+
+  border-bottom:
+    2px solid var(--px-border);
+
+  color:
+    var(--px-accent-soft);
+
+  font-size:
+    0.42rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.08em;
+
+}
+
+
+/* ================================================================
+   LIGHTS
+================================================================ */
+
+.pixel-card__lights {
+
+  display:
+    flex;
+
+  gap:
+    5px;
+
+}
+
+
+.pixel-card__lights span {
+
+  width:
+    6px;
+
+  height:
+    6px;
+
+  display:
+    block;
+
+  border:
+    1px solid #050608;
+
+  box-shadow:
+    1px 1px 0 var(--px-border);
+
+}
+
+
+/*
+ * Tres tonos muy próximos.
+ * Se ven como LEDs retro sin llamar demasiado la atención.
+ */
+
+.pixel-card__lights span:nth-child(1) {
+
+  background:
+    var(--px-accent-dark);
+
+}
+
+
+.pixel-card__lights span:nth-child(2) {
+
+  background:
+    var(--px-accent-soft);
+
+}
+
+
+.pixel-card__lights span:nth-child(3) {
+
+  background:
+    var(--px-accent);
+
+}
+
+
+/* ================================================================
+   BAR TITLE
+================================================================ */
+
+.pixel-card__bar-title {
+
+  flex:
+    1;
+
+  text-align:
+    center;
+
+  color:
+    var(--px-accent-soft);
+
+}
+
+
+.pixel-card__status {
+
+  color:
+    var(--px-muted);
+
+  font-size:
+    0.38rem;
+
+}
+
+
+/* ================================================================
+   IMAGE
+================================================================ */
+
+.pixel-card__image {
+
+  position:
+    relative;
+
+  height:
+    185px;
+
+  margin:
+    0;
+
+  overflow:
+    hidden;
+
+  background:
+    #080b0e;
+
+}
+
+
+/* ================================================================
+   IMAGE
+================================================================ */
+
+.pixel-card__img {
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    cover;
+
+  filter:
+    saturate(0.85)
+    contrast(1.04);
+
+  transition:
+    transform 0.25s steps(4),
+    filter 0.2s ease;
+
+}
+
+
+.pixel-card:hover .pixel-card__img {
+
+  transform:
+    scale(1.04);
+
+  filter:
+    saturate(0.95)
+    contrast(1.06);
+
+}
+
+
+/* ================================================================
+   CRT SCANLINE
+================================================================ */
+
+.pixel-card__scanline {
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+
+      rgb(0 0 0 / 0.11) 0,
+
+      rgb(0 0 0 / 0.11) 1px,
+
+      transparent 1px,
+
+      transparent 4px
+    );
+
+  mix-blend-mode:
+    multiply;
+
+}
+
+
+/* ================================================================
+   SCREEN CORNERS
+================================================================ */
+
+.pixel-card__corner {
+
+  position:
+    absolute;
+
+  width:
+    16px;
+
+  height:
+    16px;
+
+  border:
+    2px solid var(--px-accent);
+
+  opacity:
+    0.7;
+
+}
+
+
+.pixel-card__corner--tl {
+
+  top:
+    10px;
+
+  left:
+    10px;
+
+  border-width:
+    2px 0 0 2px;
+
+}
+
+
+.pixel-card__corner--tr {
+
+  top:
+    10px;
+
+  right:
+    10px;
+
+  border-width:
+    2px 2px 0 0;
+
+}
+
+
+.pixel-card__corner--bl {
+
+  bottom:
+    10px;
+
+  left:
+    10px;
+
+  border-width:
+    0 0 2px 2px;
+
+}
+
+
+.pixel-card__corner--br {
+
+  right:
+    10px;
+
+  bottom:
+    10px;
+
+  border-width:
+    0 2px 2px 0;
+
+}
+
+
+/* ================================================================
+   HUD
+================================================================ */
+
+.pixel-card__hud {
+
+  position:
+    absolute;
+
+  z-index:
+    2;
+
+  padding:
+    4px 6px;
+
+  background:
+    rgb(5 7 8 / 0.82);
+
+  color:
+    var(--px-accent-soft);
+
+  font-size:
+    0.38rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.08em;
+
+}
+
+
+.pixel-card__hud--left {
+
+  left:
+    10px;
+
+  bottom:
+    10px;
+
+}
+
+
+.pixel-card__hud--right {
+
+  right:
+    10px;
+
+  bottom:
+    10px;
+
+  color:
+    var(--px-accent);
+
+}
+
+
+/* ================================================================
+   META
+================================================================ */
+
+.pixel-card__meta {
+
+  position:
+    relative;
+
+  z-index:
+    6;
+
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  align-items:
+    center;
+
+  gap:
+    0.5rem;
+
+  padding:
+    0.85rem 1rem 0.4rem;
+
+}
+
+
+/* ================================================================
+   DATE
+================================================================ */
+
+.date-chip {
+
+  color:
+    var(--px-body);
+
+  font-size:
+    0.52rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.03em;
+
+}
+
+
+.date-chip__prefix {
+
+  color:
+    var(--px-accent-soft);
+
+}
+
+
+/* ================================================================
+   DIVIDER
+================================================================ */
+
+.meta-divider {
+
+  color:
+    var(--px-muted);
+
+  font-size:
+    0.55rem;
+
+}
+
+
+/* ================================================================
+   CATEGORY BADGE
+================================================================ */
+
+.pixel-badge {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    5px 7px;
+
+  background:
+    var(--px-panel-raised);
+
+  border:
+    1px solid var(--px-border);
+
+  color:
+    var(--px-heading);
+
+  font-family:
+    'Press Start 2P', monospace;
+
+  font-size:
+    0.4rem;
+
+  line-height:
+    1.4;
+
+  text-decoration:
+    none;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    transform 0.1s steps(2),
+    background 0.1s steps(2),
+    color 0.1s steps(2),
+    border-color 0.1s steps(2);
+
+}
+
+
+.pixel-badge:hover {
+
+  transform:
+    translate(-2px, -2px);
+
+  background:
+    var(--px-accent);
+
+  border-color:
+    var(--px-accent);
+
+  color:
+    #ffffff;
+
+}
+
+
+/* ================================================================
+   CONTENT
+================================================================ */
+
+.pixel-card__content {
+
+  position:
+    relative;
+
+  z-index:
+    6;
+
+  padding:
+    0.45rem 1rem 1.2rem;
+
+}
+
+
+/* ================================================================
+   TITLE
+================================================================ */
+
+.card-title {
+
+  margin:
+    0;
+
+  font-size:
+    1rem;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.55;
+
+  color:
+    var(--px-heading);
+
+}
+
+
+.card-title a {
+
+  display:
+    block;
+
+  color:
+    inherit;
+
+  text-decoration:
+    none;
+
+}
+
+
+.card-title__arrow {
+
+  display:
+    inline-block;
+
+  margin-right:
+    0.35rem;
+
+  color:
+    var(--px-accent-soft);
+
+  font-family:
+    'JetBrains Mono', monospace;
+
+  font-weight:
+    900;
+
+  transition:
+    transform 0.1s steps(2),
+    color 0.1s steps(2);
+
+}
+
+
+.pixel-card:hover .card-title__arrow {
+
+  color:
+    var(--px-accent);
+
+  transform:
+    translateX(4px);
+
+}
+
+
+/* ================================================================
+   DESCRIPTION
+================================================================ */
+
+.card-desc {
+
+  margin:
+    0.7rem 0 0;
+
+  display:
+    -webkit-box;
+
+  overflow:
+    hidden;
+
+  color:
+    var(--px-body);
+
+  font-size:
+    0.72rem;
+
+  line-height:
+    1.75;
+
+  -webkit-box-orient:
+    vertical;
+
+  -webkit-line-clamp:
+    3;
+
+}
+
+
+/* ================================================================
+   FOOTER
+================================================================ */
+
+.pixel-card__footer {
+
+  position:
+    relative;
+
+  z-index:
+    6;
+
+  min-height:
+    32px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  margin-top:
+    auto;
+
+  padding:
+    0 1rem;
+
+  background:
+    var(--px-bar-bg);
+
+  border-top:
+    1px solid var(--px-border);
+
+  color:
+    var(--px-muted);
+
+  font-size:
+    0.4rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.08em;
+
+}
+
+
+.pixel-card__footer-status {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    5px;
+
+  color:
+    var(--px-accent-soft);
+
+}
+
+
+.pixel-card__footer-status i {
+
+  width:
+    5px;
+
+  height:
+    5px;
+
+  display:
+    inline-block;
+
+  background:
+    currentColor;
+
+  box-shadow:
+    1px 1px 0 #000;
+
+}
+
+
+/* ================================================================
+   LIGHT MODE
+   Retro editorial claro.
+   Mismo azul grisáceo, muy desaturado.
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-grid {
+
+  --px-accent:
+    #607887;
+
+  --px-accent-soft:
+    #718894;
+
+  --px-accent-dark:
+    #506975;
+
+  --px-panel:
+    #fafaf8;
+
+  --px-panel-raised:
+    #f0f1ef;
+
+  --px-border:
+    #292d30;
+
+  --px-card-bg:
+    #fcfcfa;
+
+  --px-bar-bg:
+    #e9ebea;
+
+  --px-heading:
+    #202427;
+
+  --px-body:
+    #5d6468;
+
+  --px-muted:
+    #7b8285;
+
+}
+
+
+/* ================================================================
+   LIGHT CARD
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-card {
+
+  background:
+    var(--px-card-bg);
+
+  border-color:
+    var(--px-border);
+
+  box-shadow:
+    6px 6px 0 var(--px-border);
+
+}
+
+
+/* ================================================================
+   LIGHT CRT
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-card::after {
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+
+      rgb(20 20 20 / 0.018) 0,
+
+      rgb(20 20 20 / 0.018) 1px,
+
+      transparent 1px,
+
+      transparent 5px
+    );
+
+  opacity:
+    0.5;
+
+}
+
+
+/* ================================================================
+   LIGHT BAR
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-card__bar {
+
+  background:
+    var(--px-bar-bg);
+
+  border-color:
+    var(--px-border);
+
+  color:
+    var(--px-accent);
+
+}
+
+
+/* ================================================================
+   LIGHT FRAME
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-frame-outer {
+
+  background:
+    var(--px-border);
+
+}
+
+
+:global(:root:not(.dark)) .pixel-card:hover .pixel-frame-outer {
+
+  background:
+    var(--px-accent);
+
+}
+
+
+:global(:root:not(.dark)) .pixel-frame-inner {
+
+  background:
+    var(--px-panel);
+
+}
+
+
+/* ================================================================
+   LIGHT TITLE
+================================================================ */
+
+:global(:root:not(.dark)) .card-title {
+
+  color:
+    var(--px-heading);
+
+}
+
+
+/* ================================================================
+   LIGHT DESCRIPTION
+================================================================ */
+
+:global(:root:not(.dark)) .card-desc {
+
+  color:
+    var(--px-body);
+
+}
+
+
+/* ================================================================
+   LIGHT DATE
+================================================================ */
+
+:global(:root:not(.dark)) .date-chip {
+
+  color:
+    var(--px-body);
+
+}
+
+
+/* ================================================================
+   LIGHT BADGES
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-badge {
+
+  background:
+    var(--px-panel-raised);
+
+  border-color:
+    var(--px-border);
+
+  color:
+    var(--px-heading);
+
+}
+
+
+:global(:root:not(.dark)) .pixel-badge:hover {
+
+  background:
+    var(--px-accent);
+
+  border-color:
+    var(--px-accent);
+
+  color:
+    #ffffff;
+
+}
+
+
+/* ================================================================
+   LIGHT FOOTER
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-card__footer {
+
+  background:
+    var(--px-bar-bg);
+
+  border-color:
+    var(--px-border);
+
+  color:
+    var(--px-muted);
+
+}
+
+
+/* ================================================================
+   LIGHT HOVER
+================================================================ */
+
+:global(:root:not(.dark)) .pixel-card:hover {
+
+  border-color:
+    var(--px-accent);
+
+  box-shadow:
+    9px 9px 0 var(--px-border);
+
+}
+
+
+/* ================================================================
+   TABLET
+================================================================ */
+
+@media (max-width: 1023px) {
+
+  .pixel-grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap:
+      2.5rem 1.5rem;
+
+  }
+
+}
+
+
+/* ================================================================
+   MOBILE
+================================================================ */
+
+@media (max-width: 767px) {
+
+  .pixel-grid {
+
+    grid-template-columns:
+      1fr;
+
+    gap:
+      2.5rem;
+
+  }
+
+
+  .pixel-card {
+
+    box-shadow:
+      4px 4px 0 var(--px-border);
+
+  }
+
+
+  .pixel-card:hover {
+
+    transform:
+      translate(-2px, -2px);
+
+    box-shadow:
+      6px 6px 0 var(--px-border);
+
+  }
+
+
+  .pixel-card__image {
+
+    height:
+      190px;
+
+  }
+
+
+  .pixel-card__meta {
+
+    padding:
+      0.75rem 0.85rem 0.35rem;
+
+  }
+
+
+  .pixel-card__content {
+
+    padding:
+      0.4rem 0.85rem 1.1rem;
+
+  }
+
+
+  .card-title {
+
+    font-size:
+      0.9rem;
+
+  }
+
+
+  .card-desc {
+
+    font-size:
+      0.68rem;
+
+  }
+
+
+  .pixel-card__footer {
+
+    padding:
+      0 0.85rem;
+
+  }
+
+}
+
+
+/* ================================================================
+   REDUCED MOTION
+================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pixel-card,
+  .pixel-card__img,
+  .pixel-card__arrow,
+  .pixel-badge {
+
+    transition:
+      none;
+
+  }
+
+}
+
+</style>
